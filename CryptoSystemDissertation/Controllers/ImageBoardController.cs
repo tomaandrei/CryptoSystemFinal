@@ -104,9 +104,9 @@ namespace CryptoSystemDissertation.Controllers
             watchAesEncrypt = new Stopwatch();
             watchAesEncrypt.Start();
 
-            var aesEncrypt = new AESEncryption<Parameters>(SetParameters());
-            var IV = aesEncrypt.GenerateAesKeys();
-            var encryptParameters = aesEncrypt.EncryptAES();
+            //var aesEncrypt = new AESEncryption<Parameters>(SetParameters());
+            //var IV = aesEncrypt.GenerateAesKeys();
+            var encryptParameters = Helper.Serialize(SetParameters());
 
             watchAesEncrypt.Stop();
             AesEncryptTime = watchAesEncrypt.ElapsedMilliseconds;              
@@ -116,7 +116,7 @@ namespace CryptoSystemDissertation.Controllers
                 imageDetails.SenderId = senderId;
                 imageDetails.ReceiverId = receiverId;
                 imageDetails.Parameters = encryptParameters;
-                imageDetails.IVAes = IV;
+                imageDetails.IVAes = null;
                 imageDetails.Image = null;
                 imageDetails.ImageId = Guid.NewGuid().ToString();
                 db.ImageDetails.Add(imageDetails);
@@ -228,14 +228,15 @@ namespace CryptoSystemDissertation.Controllers
         {
             watchAesDecrypt = Stopwatch.StartNew();
 
-            var aesDecrypt = new AESDecryption<Parameters>(image.Parameters, image.IVAes);
-            var plainParameters = aesDecrypt.DecryptParameters();
+            var aesDecrypt = image.Parameters;
+            var plainParameters = aesDecrypt;
 
             watchAesDecrypt.Stop();
             AesDecryptTime = watchAesDecrypt.ElapsedMilliseconds;
 
             watchRsaEncrypt = Stopwatch.StartNew();
-            var encryptParameters = new RSAEncryptParameters<Parameters>(RSAKey, plainParameters);
+           
+            var encryptParameters = new RSAEncryptParameters<Parameters>(RSAKey, Helper.Deserialize<Parameters>(plainParameters));
             var parameters = encryptParameters.Encrypt();
 
             watchRsaEncrypt.Stop();
