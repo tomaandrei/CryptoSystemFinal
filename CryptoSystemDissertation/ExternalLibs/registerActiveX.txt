@@ -1,0 +1,6 @@
+In CMD with administrative priviledges run ->
+
+cd C:\Users\andre\Documents\Visual Studio 2015\Projects\CryptoAppActiveControl\CryptoAppActiveControl\bin\Debug\
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\regasm.exe  CryptoAppActiveControl.dll  /codebase /tlb
+
+

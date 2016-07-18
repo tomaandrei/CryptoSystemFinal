@@ -1,0 +1,105 @@
+﻿@model CryptoSystemDissertation.Models.UserAccount
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="container">
+    <h2>Register a new account</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @if (ViewBag.Message != null)
+            {
+                <div class="form-group">
+                    <div class="col-md-12 alert alert-success">@ViewBag.Message</div>
+                </div>
+            }
+            @if (ViewBag.RegisterError != null)
+            {
+                <div class="form-group">
+                    <div class="col-md-12 alert alert-danger">@ViewBag.RegisterError</div>
+                </div>
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2" for="FirstName">First name:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="LastName">Last name:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Email">Email:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Username">Username:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Password">Password:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="ConfirmPassword">Confirm password:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="btnSubmit" type="submit" value="Register now!" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    (function () {
+        $("#btnSubmit").click(function () {
+            var id = $("#Password").val();
+            var id2 = $("#ConfirmPassword").val();
+
+            if (!id && !id2) {
+                return;
+            }
+
+            $("#Password").val(crypto.pbkdf2Sync(id, "5A2469A766D3A", 5000, 20));
+            $("#ConfirmPassword").val(crypto.pbkdf2Sync(id2, "5A2469A766D3A", 5000, 20));
+        });
+    })();
+</script>
+}

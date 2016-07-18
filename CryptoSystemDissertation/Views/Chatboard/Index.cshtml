@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CryptoSystemDissertation.Models.UserAccount>
+<div class="container">
+    <h2>Chatboard</h2>
+    <div class="home-doctors  clearfix col-lg-8">
+        @foreach (var user in Model)
+            {
+
+            <div class="col-lg-4 col-md-4 col-sm-6  text-center doc-item">
+                <div class="common-doctor animated fadeInUp clearfix ae-animation-fadeInUp">
+
+                    <ul class="list-inline social-lists animate">
+                        <li onclick="location.href='@Url.Action("ChatOn", "Chatboard", new { userId = user.UserID})'"><a href="#">Message @user.LastName</a></li>
+                    </ul>
+
+                    <figure>
+                        <img src="http://loremflickr.com/g/320/240/human" class="doc-img animate attachment-gallery-post-single wp-post-image" alt="doctor-2">
+                    </figure>
+
+                    <div class="text-content">
+                        <h5>@user.FirstName @user.LastName</h5>
+                        <!-- <div class="for-border"></div> -->
+                        <h5><small>@user.Email</small></h5>
+                        <h5><small>UTCN</small></h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+        <div id="myPicturesHolder" class="myPictures-holder col-lg-4">
+          
+        </div>
+</div>
+@section Scripts {
+   @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        function updateMyImages() {
+            location.reload(true);
+        }
+
+        MyOperations.GetPicturesForMe();
+        //setInterval(updateMyImages, 10000);
+    })
+</script>
+}

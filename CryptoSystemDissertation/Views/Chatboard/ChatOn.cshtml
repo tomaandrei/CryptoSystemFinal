@@ -1,0 +1,31 @@
+﻿@model CryptoSystemDissertation.Models.UserAccount
+
+@{
+    ViewBag.Title = "Chat On";
+}
+
+<div class="container">
+    <h2> The image will be encrypted and sent to @ViewBag.User.FirstName</h2>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="image-preview"><img class="preview-initial" src="" /></div>
+        </div>
+        <div class="col-lg-2">
+            
+        </div>
+        <div class="col-lg-5">
+            <div class="image-preview"><img class="preview-encrypted" src="" /></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <input class="browse-img" type="file" onchange="ImageProcessor.showImage(this, @ViewBag.User.UserID);" />
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-5">
+            <button id="btnSendToReceiver" onclick="RSACrypto.SendEncryptedImage(@ViewBag.User.UserID);" class="btn btn-primary full-width hidden">Send encrypted image to @ViewBag.User.FirstName</button>
+        </div>
+    </div>
+</div>
+
+

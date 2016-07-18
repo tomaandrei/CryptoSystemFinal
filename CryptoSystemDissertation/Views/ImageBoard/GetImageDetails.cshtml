@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "GetImageDetails";
+}
+
+<div class="container">
+    <h2>Your received image</h2>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="image-preview"><img class="preview-initial" src="" /></div>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+        <div class="col-lg-5">
+            <div class="image-preview"><img class="preview-encrypted" src="" /></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            MyOperations.GetPicture('@ViewBag.ImageId', '@ViewBag.SenderId');
+        })
+    </script>
+}
