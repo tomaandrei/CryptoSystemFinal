@@ -300,9 +300,7 @@ var RSACrypto = (function () {
             success: function (data) {
                 deferred.resolve(data);
             },
-            error: function () {
-                console.log("Error getting encrypted params...")
-            }
+            error: function(req, err){ console.log("Error getting encrypted params..." + err); }
         });
         return deferred.promise();
     }
