@@ -196,6 +196,7 @@
     <Content Include="Content\Images\intro-bg.jpg" />
     <Content Include="Content\Images\ipad-hand.png" />
     <Content Include="Content\Images\Logo.png" />
+    <Content Include="Content\Images\logo_UN.png" />
     <Content Include="Content\Images\p01.png" />
     <Content Include="Content\Images\p02.png" />
     <Content Include="Content\Images\p03.png" />
@@ -205,6 +206,7 @@
     <Content Include="Content\Images\ser01.png" />
     <Content Include="Content\Images\ser02.png" />
     <Content Include="Content\Images\ser03.png" />
+    <Content Include="Content\Images\UT_E_02.png" />
     <Content Include="ExternalLibs\CryptoAppActiveControl.dll" />
     <Content Include="ExternalLibs\registerActiveX.txt" />
     <Content Include="favicon.ico" />
